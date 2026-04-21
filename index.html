@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivansh Sonwani · SEO and Digital Growth</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0c0c0b;
+    --ink-2: #2e2e2c;
+    --ink-3: #5a5a57;
+    --ink-4: #9a9a95;
+    --bg: #f8f5f0;
+    --bg-2: #f0ece5;
+    --bg-3: #e8e4dc;
+    --white: #ffffff;
+    --dark: #111110;
+    --dark-2: #1c1c1a;
+    --rust: #bf4520;
+    --rust-2: #d4622e;
+    --rust-pale: #faf0ec;
+    --teal: #1a6b50;
+    --teal-pale: #eaf4f0;
+    --gold: #a07820;
+    --gold-pale: #faf5e8;
+    --blue: #1a4a8a;
+    --blue-pale: #eaf0fa;
+    --border: rgba(12,12,11,0.07);
+    --border-2: rgba(12,12,11,0.13);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: 58px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3.5rem;
+    background: rgba(248,245,240,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 500;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav a {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3); text-decoration: none;
+    transition: color 0.18s;
+  }
+  nav a:hover { color: var(--rust); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 3.5rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .hero-pre {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .hero-pre-line { width: 3rem; height: 1px; background: var(--rust); }
+  .hero-pre-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rust);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 5.5vw, 5.2rem);
+    font-weight: 300; line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--rust); }
+  .hero h1 strong { font-weight: 600; }
+  .hero-body {
+    font-size: 1rem; line-height: 1.82;
+    color: var(--ink-2); max-width: 520px;
+    margin-bottom: 2.75rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-fill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.72rem 1.8rem;
+    background: var(--ink); color: var(--bg);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-decoration: none; border-radius: 1px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-fill:hover { background: var(--rust); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.72rem 1.8rem;
+    border: 1px solid var(--border-2); color: var(--ink);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    text-decoration: none; border-radius: 1px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--rust); color: var(--rust); }
+
+  /* HERO STATS */
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border-2); border: 1px solid var(--border-2); }
+  .hstat {
+    background: var(--white);
+    padding: 1.6rem 1.5rem;
+    position: relative; overflow: hidden;
+    transition: background 0.2s;
+  }
+  .hstat:hover { background: var(--bg); }
+  .hstat-accent {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--rust);
+  }
+  .hstat-accent.g { background: var(--teal); }
+  .hstat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300;
+    letter-spacing: -0.04em; line-height: 1;
+    color: var(--ink); margin-bottom: 0.4rem;
+  }
+  .hstat-label {
+    font-size: 0.64rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 0.2rem;
+  }
+  .hstat-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.64rem; color: var(--ink-4); line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .rule { border: none; border-top: 1px solid var(--border); }
+
+  /* SECTION SHELL */
+  .section { max-width: 1180px; margin: 0 auto; padding: 7rem 3.5rem; }
+  .section.flush-top { padding-top: 4rem; }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.1rem;
+  }
+  .eyebrow-line { width: 1.5rem; height: 1px; background: var(--rust); }
+  .eyebrow-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--rust);
+  }
+  .sec-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 300; letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 3.5rem;
+    max-width: 640px;
+  }
+
+  /* SUBDOMAIN GRID */
+  .sub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .sub-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    transition: transform 0.22s, box-shadow 0.22s;
+    position: relative; overflow: hidden;
+  }
+  .sub-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(12,12,11,0.1); }
+  .sub-card-top {
+    padding: 1.75rem 1.75rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sub-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.85rem;
+  }
+  .sub-badge.rust { background: var(--rust-pale); color: var(--rust); }
+  .sub-badge.teal { background: var(--teal-pale); color: var(--teal); }
+  .sub-badge.blue { background: var(--blue-pale); color: var(--blue); }
+  .sub-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem; font-weight: 400;
+    letter-spacing: -0.01em; margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .sub-url {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; color: var(--ink-4);
+    text-decoration: none; word-break: break-all;
+    transition: color 0.18s;
+  }
+  .sub-url:hover { color: var(--rust); }
+  .sub-body { padding: 1.5rem 1.75rem; flex: 1; }
+  .sub-body p { font-size: 0.86rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 300; }
+  .sub-nums { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .sub-num-item { display: flex; flex-direction: column; gap: 0.15rem; }
+  .sub-num-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.65rem; font-weight: 400;
+    letter-spacing: -0.03em; color: var(--ink);
+  }
+  .sub-num-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; color: var(--ink-4);
+  }
+  .sub-cta {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.9rem 1.75rem;
+    font-size: 0.76rem; font-weight: 500;
+    color: var(--ink-3); text-decoration: none;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.03em;
+    transition: color 0.18s, background 0.18s;
+  }
+  .sub-cta:hover { color: var(--rust); background: var(--rust-pale); }
+
+  /* CASE STUDY DARK */
+  .case-dark {
+    background: var(--dark);
+    color: rgba(248,245,240,0.65);
+    padding: 9rem 3.5rem;
+    position: relative; overflow: hidden;
+  }
+  .case-dark::after {
+    content: '';
+    position: absolute; bottom: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(191,69,32,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .case-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; }
+  .case-dark .eyebrow-line { background: var(--rust-2); }
+  .case-dark .eyebrow-text { color: var(--rust-2); }
+  .case-dark .sec-title { color: rgba(248,245,240,0.95); }
+  .case-layout { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 6rem; align-items: start; margin-top: 0; }
+  .case-story p {
+    font-size: 0.97rem; line-height: 1.9;
+    color: rgba(248,245,240,0.58); margin-bottom: 1.25rem; font-weight: 300;
+  }
+  .case-story p strong { color: rgba(248,245,240,0.95); font-weight: 500; }
+  .case-metrics { display: flex; flex-direction: column; border: 1px solid rgba(248,245,240,0.07); }
+  .cmet {
+    padding: 1.4rem 1.6rem;
+    border-bottom: 1px solid rgba(248,245,240,0.07);
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .cmet:last-child { border-bottom: none; }
+  .cmet-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(248,245,240,0.25);
+  }
+  .cmet-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 300;
+    letter-spacing: -0.04em; color: rgba(248,245,240,0.95); line-height: 1;
+  }
+  .cmet-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.66rem; color: #6dbf8a;
+  }
+
+  /* SOCIAL */
+  .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .scard {
+    background: var(--white); border: 1px solid var(--border);
+    padding: 1.75rem; display: flex; flex-direction: column; gap: 0.8rem;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .scard:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(12,12,11,0.09); }
+  .scard-platform {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-4);
+  }
+  .scard-handle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; color: var(--ink);
+  }
+  .scard-desc { font-size: 0.83rem; color: var(--ink-2); line-height: 1.68; flex: 1; font-weight: 300; }
+  .scard-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300;
+    letter-spacing: -0.04em; color: var(--ink); line-height: 1;
+  }
+  .scard-count-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; color: var(--ink-4); margin-top: 0.15rem;
+  }
+  .scard-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.76rem; font-weight: 500; color: var(--rust);
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: gap 0.18s;
+  }
+  .scard-link:hover { gap: 0.65rem; }
+
+  /* TIMELINE */
+  .tl { position: relative; padding-left: 2rem; }
+  .tl::before {
+    content: ''; position: absolute;
+    left: 0; top: 10px; bottom: 0;
+    width: 1px; background: var(--border-2);
+  }
+  .tl-item { position: relative; padding: 0 0 3.25rem 2.25rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -4px; top: 10px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--rust); border: 2px solid var(--bg);
+  }
+  .tl-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.5rem;
+  }
+  .tl-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem; font-weight: 400;
+    letter-spacing: -0.01em; margin-bottom: 0.25rem;
+  }
+  .tl-co { font-size: 0.82rem; color: var(--rust); font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.02em; }
+  .tl-body { font-size: 0.87rem; color: var(--ink-2); line-height: 1.78; font-weight: 300; }
+  .tl-body ul { padding-left: 1.2rem; margin-top: 0.75rem; }
+  .tl-body li { margin-bottom: 0.55rem; }
+
+  /* TOOLS */
+  .tools-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    border: 1px solid var(--border); gap: 1px; background: var(--border);
+  }
+  .tool-cell {
+    background: var(--white); padding: 1.6rem 1.75rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    transition: background 0.18s;
+  }
+  .tool-cell:hover { background: var(--bg); }
+  .tool-name { font-size: 0.92rem; font-weight: 600; color: var(--ink); }
+  .tool-desc { font-size: 0.8rem; color: var(--ink-3); line-height: 1.6; font-weight: 300; }
+  .tool-badge {
+    display: inline-flex; align-items: center;
+    padding: 0.16rem 0.55rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem; font-weight: 700; letter-spacing: 0.09em;
+    text-transform: uppercase; width: fit-content; margin-top: 0.2rem;
+  }
+  .tb-hot { background: var(--rust-pale); color: var(--rust); }
+  .tb-good { background: var(--teal-pale); color: var(--teal); }
+  .tb-mid { background: var(--bg-2); color: var(--ink-3); }
+
+  /* CERTS */
+  .cert-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 2.75rem; }
+  .cert-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border-2);
+    font-size: 0.74rem; color: var(--ink-2); font-weight: 400;
+    transition: border-color 0.18s, color 0.18s;
+  }
+  .cert-pill:hover { border-color: var(--rust); color: var(--rust); }
+  .cdot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+  .cdot.pending { background: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    color: rgba(248,245,240,0.45);
+    padding: 7.5rem 3.5rem 3.5rem;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300; color: rgba(248,245,240,0.95);
+    letter-spacing: -0.03em; line-height: 1.08;
+    margin-bottom: 1.25rem;
+    max-width: 720px; margin-left: auto; margin-right: auto;
+  }
+  .footer-sub { font-size: 0.88rem; margin-bottom: 3rem; font-weight: 300; }
+  .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+  .footer-links a {
+    color: rgba(248,245,240,0.45); text-decoration: none;
+    font-size: 0.84rem; font-weight: 400;
+    transition: color 0.18s;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .footer-links a:hover { color: rgba(248,245,240,0.95); }
+  .footer-base {
+    margin-top: 4.5rem; padding-top: 2rem;
+    border-top: 1px solid rgba(248,245,240,0.06);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes up { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+  .hero-pre  { animation: up 0.5s ease both; }
+  .hero h1   { animation: up 0.5s 0.08s ease both; }
+  .hero-body { animation: up 0.5s 0.16s ease both; }
+  .hero-btns { animation: up 0.5s 0.24s ease both; }
+  .hero-stats{ animation: up 0.5s 0.1s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 110px 1.5rem 3rem; min-height: auto; gap: 3rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .section { padding: 4.5rem 1.5rem; }
+    .case-dark { padding: 5rem 1.5rem; }
+    .case-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .sub-grid { grid-template-columns: 1fr; }
+    .social-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
+    footer { padding: 5rem 1.5rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Shivansh Sonwani</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#case">Case Study</a></li>
+    <li><a href="#social">Social</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section>
+<div class="hero">
+  <div>
+    <div class="hero-pre">
+      <div class="hero-pre-line"></div>
+      <div class="hero-pre-text">SEO Analyst · Outlook India · MBA · Noida</div>
+    </div>
+    <h1>I turn <em>overlooked</em> data<br>into verified<br>organic growth.</h1>
+    <p class="hero-body">2+ years building organic growth at one of India's largest English-language media brands. Every number on this page is GSC-verified. I kept the exports.</p>
+    <div class="hero-btns">
+      <a href="mailto:shivanshsonwani5@gmail.com" class="btn-fill">Get in touch ↗</a>
+      <a href="https://linkedin.com/in/shivanshsonwani" target="_blank" class="btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-accent"></div>
+      <div class="hstat-label">Blockchain Recovery</div>
+      <div class="hstat-num">74%</div>
+      <div class="hstat-sub">Position 42 to 11<br>192K to 1.06M impressions</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-accent g"></div>
+      <div class="hstat-label">Organic Clicks</div>
+      <div class="hstat-num">197K</div>
+      <div class="hstat-sub">GSC-verified<br>3 clean subdomains</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-accent g"></div>
+      <div class="hstat-label">Total Impressions</div>
+      <div class="hstat-num">37M</div>
+      <div class="hstat-sub">Across all<br>owned subdomains</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-accent"></div>
+      <div class="hstat-label">Brand Studio Lift</div>
+      <div class="hstat-num">43%</div>
+      <div class="hstat-sub">Position 14.6 to 8.3<br>1.9M to 2.59M impressions</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="rule">
+
+<!-- SUBDOMAINS -->
+<div class="section" id="work">
+  <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Live Work</div></div>
+  <h2 class="sec-title">Subdomains I owned, built, and grew.</h2>
+  <div class="sub-grid">
+
+    <div class="sub-card">
+      <div class="sub-card-top">
+        <div class="sub-badge rust">Brand Studio</div>
+        <h3>Outlook Brand Studio</h3>
+        <a href="https://www.outlookindia.com/brand-studio" target="_blank" class="sub-url">outlookindia.com/brand-studio ↗</a>
+      </div>
+      <div class="sub-body">
+        <p>Outlook India's branded content and commercial partnership vertical, covering Indian festival campaigns, culturally-led research content, live events, and sponsored brand stories.</p>
+        <p>Owned the full SEO strategy: keyword targeting, content briefs, post-publish optimisation, and stakeholder reporting. Managed Flipkart campaigns worth Rs 2-4L per campaign end-to-end.</p>
+        <div class="sub-nums">
+          <div class="sub-num-item">
+            <div class="sub-num-val">43%</div>
+            <div class="sub-num-label">Position lift</div>
+          </div>
+          <div class="sub-num-item">
+            <div class="sub-num-val">14.6 to 8.3</div>
+            <div class="sub-num-label">Avg. position</div>
+          </div>
+          <div class="sub-num-item">
+            <div class="sub-num-val">2.59M</div>
+            <div class="sub-num-label">Impressions YoY</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://www.outlookindia.com/brand-studio" target="_blank" class="sub-cta">View live subdomain ↗</a>
+    </div>
+
+    <div class="sub-card">
+      <div class="sub-card-top">
+        <div class="sub-badge blue">Blockchain and Crypto</div>
+        <h3>Blockchain Insights</h3>
+        <a href="https://www.outlookindia.com/xhub/blockchain-insights" target="_blank" class="sub-url">outlookindia.com/xhub/blockchain-insights ↗</a>
+      </div>
+      <div class="sub-body">
+        <p>Outlook India's dedicated blockchain, crypto, and Web3 finance vertical. I diagnosed a critical performance problem independently: 192,000 impressions with near-zero click-through, sitting at position 42 on Google.</p>
+        <p>Identified a content-intent mismatch, restructured the page architecture, and rewrote meta elements. No budget. No instructions. The full recovery story is in the case study below.</p>
+        <div class="sub-nums">
+          <div class="sub-num-item">
+            <div class="sub-num-val">74%</div>
+            <div class="sub-num-label">Position lift</div>
+          </div>
+          <div class="sub-num-item">
+            <div class="sub-num-val">42 to 11</div>
+            <div class="sub-num-label">Search position</div>
+          </div>
+          <div class="sub-num-item">
+            <div class="sub-num-val">1.06M</div>
+            <div class="sub-num-label">Impressions after</div>
+          </div>
+        </div>
+      </div>
+      <a href="#case" class="sub-cta">Read the case study ↓</a>
+    </div>
+
+    <div class="sub-card">
+      <div class="sub-card-top">
+        <div class="sub-badge teal">Gaming and GenZ</div>
+        <h3>Outlook Respawn</h3>
+        <a href="https://respawn.outlookindia.com/" target="_blank" class="sub-url">respawn.outlookindia.com ↗</a>
+      </div>
+      <div class="sub-body">
+        <p>Outlook's gaming, esports, and GenZ pop culture vertical, launched from zero. I built the entire keyword strategy and content brief framework from scratch with no playbook and no inherited rankings.</p>
+        <p>Audience research identified a key gap: Indian gamers were underrepresented in global gaming content. Built keyword and brief strategy around that insight. Integrated ChatGPT and Gemini into workflows from day one.</p>
+        <div class="sub-nums">
+          <div class="sub-num-item">
+            <div class="sub-num-val">Zero</div>
+            <div class="sub-num-label">Starting point</div>
+          </div>
+          <div class="sub-num-item">
+            <div class="sub-num-val">Page 1</div>
+            <div class="sub-num-label">Rankings achieved</div>
+          </div>
+          <div class="sub-num-item">
+            <div class="sub-num-val">AI-first</div>
+            <div class="sub-num-label">Brief workflow</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://respawn.outlookindia.com/" target="_blank" class="sub-cta">View live subdomain ↗</a>
+    </div>
+
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- CASE STUDY -->
+<div class="case-dark" id="case">
+  <div class="case-inner">
+    <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Case Study</div></div>
+    <h2 class="sec-title" style="margin-bottom:3rem;">The Blockchain Insights recovery. Page 4 to page 1. Zero budget.</h2>
+    <div class="case-layout">
+      <div class="case-story">
+        <p>During routine GSC monitoring, I spotted something nobody had flagged. A subdomain generating <strong>192,000 impressions</strong> but only a <strong>0.8% click-through rate</strong>, sitting at position 42. High visibility. Near-zero traffic. The data was shouting and no one was listening.</p>
+        <p>I diagnosed the problem: <strong>content-intent mismatch.</strong> The page attracted impressions for queries the content did not actually answer. Strong editorial narrative, but wrong structure, wrong meta, and wrong heading hierarchy for what users were searching.</p>
+        <p>I restructured the content, rewrote all meta elements, and rebuilt the heading architecture to match actual search intent. <strong>No budget. No instructions. Entirely self-initiated.</strong></p>
+        <p>Position moved from 42 to 11. Impressions climbed from 192,000 to over <strong>1.06 million</strong>. Page 4 to page 1.</p>
+        <p>That is the reflex I bring to every subdomain: not waiting for someone to log a ticket, but finding what is broken first and fixing it with data.</p>
+      </div>
+      <div class="case-metrics">
+        <div class="cmet">
+          <div class="cmet-label">Position before</div>
+          <div class="cmet-val">42</div>
+          <div class="cmet-note">Page 4 · 0.8% CTR</div>
+        </div>
+        <div class="cmet">
+          <div class="cmet-label">Position after</div>
+          <div class="cmet-val">11</div>
+          <div class="cmet-note">Page 1 · 74% improvement</div>
+        </div>
+        <div class="cmet">
+          <div class="cmet-label">Impressions before</div>
+          <div class="cmet-val">192K</div>
+          <div class="cmet-note">Visibility wasted</div>
+        </div>
+        <div class="cmet">
+          <div class="cmet-label">Impressions after</div>
+          <div class="cmet-val">1.06M</div>
+          <div class="cmet-note">5.5x growth</div>
+        </div>
+        <div class="cmet">
+          <div class="cmet-label">Budget used</div>
+          <div class="cmet-val">Rs 0</div>
+          <div class="cmet-note">Pure strategy · GSC-verified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section" id="social">
+  <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Social Media Managed</div></div>
+  <h2 class="sec-title">Handles I managed across 640K+ combined followers.</h2>
+  <div class="social-grid">
+
+    <div class="scard">
+      <div class="scard-platform">Instagram</div>
+      <div class="scard-handle">@outlookindia</div>
+      <div class="scard-desc">Managed the Outlook Experiences Instagram handle independently: scheduled content, managed contests, and maintained posting cadence in the senior colleague's absence.</div>
+      <div>
+        <div class="scard-count">112K</div>
+        <div class="scard-count-label">Followers</div>
+      </div>
+      <a href="https://www.instagram.com/outlookindia/" target="_blank" class="scard-link">View handle ↗</a>
+    </div>
+
+    <div class="scard">
+      <div class="scard-platform">YouTube</div>
+      <div class="scard-handle">Outlook Magazine</div>
+      <div class="scard-desc">Coordinated editorial video content distribution alongside SEO strategy and branded campaign timelines, supporting Outlook's largest content channel.</div>
+      <div>
+        <div class="scard-count">295K</div>
+        <div class="scard-count-label">Subscribers</div>
+      </div>
+      <a href="https://www.youtube.com/user/OutlookMagazine" target="_blank" class="scard-link">View channel ↗</a>
+    </div>
+
+    <div class="scard">
+      <div class="scard-platform">X (Twitter)</div>
+      <div class="scard-handle">@Outlookindia</div>
+      <div class="scard-desc">Part of the social distribution strategy for editorial and branded content: coordinating organic social alongside SEO and brand campaign initiatives across the portfolio.</div>
+      <div>
+        <div class="scard-count">233K</div>
+        <div class="scard-count-label">Followers</div>
+      </div>
+      <a href="https://x.com/Outlookindia" target="_blank" class="scard-link">View profile ↗</a>
+    </div>
+
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- EXPERIENCE -->
+<div class="section" id="experience">
+  <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Experience</div></div>
+  <h2 class="sec-title">4+ years. One brand. Three progressively bigger roles.</h2>
+  <div class="tl">
+
+    <div class="tl-item">
+      <div class="tl-date">February 2024 to March 2026</div>
+      <div class="tl-role">SEO Analyst</div>
+      <div class="tl-co">Outlook India · New Delhi</div>
+      <div class="tl-body">
+        <p>Independently owned SEO strategy across three high-traffic subdomains at one of India's largest English-language media brands.</p>
+        <ul>
+          <li>Achieved 43%, 74%, and 42% position improvements across owned subdomains via technical SEO, content restructuring, and intent-led optimisation</li>
+          <li>Generated 197,000 organic clicks and 37M impressions (GSC-verified)</li>
+          <li>Structured content for AI search visibility: Google AI Overviews, featured snippets, People Also Ask, and generative AI citation in ChatGPT and Gemini responses</li>
+          <li>Managed Flipkart branded content campaigns (Rs 2-4L per campaign) end-to-end, from brief to performance tracking</li>
+          <li>Built keyword strategy and content brief system for Outlook Respawn gaming vertical from scratch</li>
+          <li>Integrated ChatGPT, Gemini, Claude, and Google AI Studio into daily content and keyword workflows</li>
+          <li>Delivered weekly and monthly performance reports to senior editorial and marketing stakeholders</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">September 2021 to February 2022</div>
+      <div class="tl-role">Sub-Editor (promoted from Social Media Intern)</div>
+      <div class="tl-co">Outlook India · New Delhi</div>
+      <div class="tl-body">
+        <p>Promoted to Sub-Editor within 3 months after independently building a content analytics framework nobody had asked for.</p>
+        <ul>
+          <li>Built reporting frameworks and SOPs for content operations across LinkedIn, Facebook, Instagram, YouTube, and X</li>
+          <li>Tracked audience growth and engagement KPIs; developed content performance dashboards</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item" style="padding-bottom:0;">
+      <div class="tl-date">August 2022 to August 2024</div>
+      <div class="tl-role">MBA in IT and Marketing</div>
+      <div class="tl-co">PSIT Kanpur</div>
+      <div class="tl-body">
+        <p>Full-time MBA to deepen the analytical and strategic foundation behind the data I was already working with. SEO Analyst role started immediately upon completion.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:4rem;">
+    <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Certifications</div></div>
+    <div class="cert-row">
+      <div class="cert-pill"><span class="cdot"></span>HubSpot Marketing Hub Software · Valid May 2027</div>
+      <div class="cert-pill"><span class="cdot"></span>Microsoft Azure Fundamentals</div>
+      <div class="cert-pill"><span class="cdot"></span>Microsoft Data for Business Analysts (Excel)</div>
+      <div class="cert-pill"><span class="cdot"></span>Microsoft Business Analysis Fundamentals</div>
+      <div class="cert-pill"><span class="cdot"></span>University of Pennsylvania · Intro to Python</div>
+      <div class="cert-pill"><span class="cdot pending"></span>Google Ads Search · In Progress</div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- TOOLS -->
+<div class="section">
+  <div class="eyebrow"><div class="eyebrow-line"></div><div class="eyebrow-text">Tools and Skills</div></div>
+  <h2 class="sec-title">Skills I have.</h2>
+  <div class="tools-grid">
+    <div class="tool-cell">
+      <div class="tool-name">Google Search Console</div>
+      <div class="tool-desc">Daily use for 2+ years. Performance monitoring, manual indexing, URL inspection, crawl diagnostics. Every metric on this page is GSC-verified.</div>
+      <div class="tool-badge tb-hot">Daily · 2 Years</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">SEMrush</div>
+      <div class="tool-desc">Keyword gap analysis, competitor benchmarking, position tracking, content audits. Hands-on across all owned subdomains.</div>
+      <div class="tool-badge tb-hot">Hands-On Professional</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">Screaming Frog</div>
+      <div class="tool-desc">Full subdomain crawl audits: broken links, on-page errors, heading structure, redirect chains, crawlability diagnostics.</div>
+      <div class="tool-badge tb-hot">Hands-On Professional</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">AI Tools Stack</div>
+      <div class="tool-desc">Grok (for identifying live trends), Gemini, Claude, Google AI Studio, Perplexity, integrated into daily workflows for keyword clustering, intent analysis, and brief development.</div>
+      <div class="tool-badge tb-hot">Daily Use</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">HubSpot Marketing Hub</div>
+      <div class="tool-desc">Certified (valid to May 2027). Workflows, email campaigns, contact management, segmentation. Used for Flipkart campaign briefs.</div>
+      <div class="tool-badge tb-good">Certified</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">GA4</div>
+      <div class="tool-desc">Funnels, acquisition analysis, audience segmentation, UTM tracking, engaged sessions. Strong working knowledge from professional use at Outlook India.</div>
+      <div class="tool-badge tb-good">Strong Knowledge</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">Microsoft Excel</div>
+      <div class="tool-desc">Pivot tables, VLOOKUP / XLOOKUP, SUMIF, COUNTIF, IF statements. Used for performance reporting and data analysis workflows.</div>
+      <div class="tool-badge tb-good">Proficient</div>
+    </div>
+    <div class="tool-cell">
+      <div class="tool-name">SQL</div>
+      <div class="tool-desc">Joins, aggregations, subqueries, GROUP BY, HAVING, CTEs, Window Functions. Actively building further depth.</div>
+      <div class="tool-badge tb-mid">Intermediate · Building</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-title">Let's talk about what your search visibility is missing.</div>
+  <p class="footer-sub">Open to Digital Marketing Analyst · Growth Analyst · SEO roles · Available immediately · Noida</p>
+  <div class="footer-links">
+    <a href="mailto:shivanshsonwani5@gmail.com">✉ shivanshsonwani5@gmail.com</a>
+    <a href="tel:+919648668251">✆ +91 96486 68251</a>
+    <a href="https://linkedin.com/in/shivanshsonwani" target="_blank">↗ LinkedIn</a>
+  </div>
+  <div class="footer-base">Shivansh Sonwani · SEO and Digital Growth · Noida, India · 2026</div>
+</footer>
+
+</body>
+</html>
